@@ -1,0 +1,253 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Variáveis de Acessibilidade ─────────────────────────────────────────── */
+:root {
+  --a11y-font-size: 16px;
+  --a11y-line-height: 1.5;
+}
+
+/* ─── Utilitários globais de acessibilidade ───────────────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Foco visível para teclado — obrigatório WCAG 2.4.7 */
+*:focus-visible {
+  outline: 3px solid #8b5cf6 !important;
+  outline-offset: 3px !important;
+  border-radius: 4px;
+}
+
+@layer base {
+  html {
+    font-size: var(--a11y-font-size);
+    line-height: var(--a11y-line-height);
+  }
+
+  body {
+    @apply bg-slate-900 text-slate-100 min-h-screen font-sans antialiased;
+    font-size: var(--a11y-font-size);
+    line-height: var(--a11y-line-height);
+    selection-color: white;
+  }
+
+  /* Garante contraste adequado para o texto selecionado */
+  ::selection {
+    background-color: #7c3aed;
+    color: white;
+  }
+}
+
+/* ─── Alto Contraste ──────────────────────────────────────────────────────── */
+html.a11y-high-contrast,
+html.a11y-high-contrast body {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+html.a11y-high-contrast .bg-slate-900,
+html.a11y-high-contrast .bg-slate-800,
+html.a11y-high-contrast .bg-slate-800\/80,
+html.a11y-high-contrast .bg-slate-900\/90,
+html.a11y-high-contrast .bg-slate-950,
+html.a11y-high-contrast .bg-slate-950\/80 {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+html.a11y-high-contrast .card-gaming {
+  background-color: #f5f5f5 !important;
+  border: 2px solid #000000 !important;
+  color: #000000 !important;
+}
+
+html.a11y-high-contrast .text-slate-300,
+html.a11y-high-contrast .text-slate-400,
+html.a11y-high-contrast .text-slate-500,
+html.a11y-high-contrast .text-slate-200,
+html.a11y-high-contrast .text-slate-100 {
+  color: #1a1a1a !important;
+}
+
+html.a11y-high-contrast .text-white {
+  color: #000000 !important;
+}
+
+html.a11y-high-contrast .text-brand-400,
+html.a11y-high-contrast .text-brand-300,
+html.a11y-high-contrast .text-indigo-300 {
+  color: #3730a3 !important;
+}
+
+html.a11y-high-contrast .text-amber-400,
+html.a11y-high-contrast .text-amber-300,
+html.a11y-high-contrast .text-yellow-400 {
+  color: #92400e !important;
+}
+
+html.a11y-high-contrast .text-emerald-400,
+html.a11y-high-contrast .text-emerald-300 {
+  color: #065f46 !important;
+}
+
+html.a11y-high-contrast .text-rose-400,
+html.a11y-high-contrast .text-rose-300 {
+  color: #991b1b !important;
+}
+
+html.a11y-high-contrast nav,
+html.a11y-high-contrast .sticky {
+  background-color: #f0f0f0 !important;
+  border-bottom: 2px solid #000000 !important;
+}
+
+html.a11y-high-contrast button:not([disabled]) {
+  border: 2px solid #000000 !important;
+}
+
+html.a11y-high-contrast input,
+html.a11y-high-contrast select,
+html.a11y-high-contrast textarea {
+  background-color: #ffffff !important;
+  border: 2px solid #000000 !important;
+  color: #000000 !important;
+}
+
+html.a11y-high-contrast *:focus-visible {
+  outline: 3px solid #000000 !important;
+  outline-offset: 3px !important;
+}
+
+/* ─── Fonte para Dislexia (OpenDyslexic via CDN inline via @font-face) ──── */
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/fonts/OpenDyslexic-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'OpenDyslexic';
+  src: url('https://cdn.jsdelivr.net/npm/open-dyslexic@1.0.3/fonts/OpenDyslexic-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+html.a11y-dyslexia,
+html.a11y-dyslexia body,
+html.a11y-dyslexia * {
+  font-family: 'OpenDyslexic', 'Comic Sans MS', cursive !important;
+  letter-spacing: 0.05em;
+  word-spacing: 0.1em;
+}
+
+/* ─── Redução de Animações ────────────────────────────────────────────────── */
+html.a11y-reduced-motion *,
+html.a11y-reduced-motion *::before,
+html.a11y-reduced-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* ─── Sublinhar links ─────────────────────────────────────────────────────── */
+html.a11y-underline-links a,
+html.a11y-underline-links button {
+  text-decoration: underline !important;
+  text-underline-offset: 3px;
+}
+
+/* ─── Cursor Ampliado ─────────────────────────────────────────────────────── */
+html.a11y-cursor-large,
+html.a11y-cursor-large * {
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M8 2 L8 26 L13 21 L17 29 L20 27 L16 19 L23 19 Z' fill='black' stroke='white' stroke-width='2'/%3E%3C/svg%3E") 0 0, auto !important;
+}
+
+/* ─── Componentes de jogo reutilizáveis ───────────────────────────────────── */
+.btn-game-primary {
+  @apply bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-500 hover:to-indigo-500 text-white font-bold py-3 px-6 rounded-2xl shadow-lg hover:shadow-brand-500/30 transform hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200;
+}
+
+.btn-game-accent {
+  @apply bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-900 font-extrabold py-3 px-6 rounded-2xl shadow-lg hover:shadow-amber-500/30 transform hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200;
+}
+
+.card-gaming {
+  @apply bg-slate-800/80 backdrop-blur-md border border-slate-700/60 rounded-3xl p-6 shadow-xl;
+}
+
+/* Animação de fade para feedback visual */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s ease-out;
+}
+
+/* Animação de flutuação lúdica */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Pulso de destaque para fases desbloqueadas na trilha */
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 0.3; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.pulse-ring {
+  animation: pulse-ring 2.5s infinite ease-in-out;
+}
+
+/* ─── Contraste mínimo para elementos interativos (WCAG AA) ─────────────── */
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* ─── Espaçamento de linha variável ──────────────────────────────────────── */
+body, p, li, td, th, label, span, h1, h2, h3, h4, h5, h6 {
+  line-height: var(--a11y-line-height);
+}
+
+/* Skip to main content link (visível só no foco por teclado) */
+.skip-to-main {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  background: #7c3aed;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0 0 1rem 1rem;
+  font-weight: bold;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: top 0.2s;
+}
+
+.skip-to-main:focus {
+  top: 0;
+}

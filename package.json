@@ -1,0 +1,25 @@
+{
+  "name": "mathplay-solutions",
+  "version": "1.0.0",
+  "description": "Plataforma Educacional Gamificada de Matemática para o Ensino Fundamental II",
+  "private": true,
+  "scripts": {
+    "install:all": "npm --prefix backend install && npm --prefix frontend install --legacy-peer-deps",
+    "seed": "npm --prefix backend run seed",
+    "test:backend": "node backend/test-api.js",
+    "start:backend": "npm --prefix backend start",
+    "start:frontend": "npm --prefix frontend run dev",
+    "build:frontend": "npm --prefix frontend run build"
+  },
+  "keywords": [
+    "educacao",
+    "matematica",
+    "gamificacao",
+    "ensino-fundamental",
+    "react",
+    "express",
+    "sqlite"
+  ],
+  "author": "MathPlay Solutions Team",
+  "license": "MIT"
+}
